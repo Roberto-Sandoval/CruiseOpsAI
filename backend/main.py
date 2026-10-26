@@ -83,8 +83,6 @@ operations = {
 }
 
 
-
-@app.get("/operation/{operation_id}")
 @app.get("/operation/{operation_id}")
 def operation(operation_id: int):
     if operation_id not in operations:
