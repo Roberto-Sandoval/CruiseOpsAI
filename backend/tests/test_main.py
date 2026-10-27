@@ -59,3 +59,17 @@ def test_operation_returns_correct_data():
     assert data["minimum"] == 25
     assert data["missing"] == 7
     assert data["status"] == "Pending"    
+
+def test_confirmed_operation_returns_zero_missing():
+    response = client.get("/operation/2")
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert data["ship"] == "Norwegian Viva"
+    assert data["port"] == "Naples"
+    assert data["counts"] == 30
+    assert data["minimum"] == 25
+    assert data["status"] == "Confirmed"
+    assert data["missing"] == 0    
