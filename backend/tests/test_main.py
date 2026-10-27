@@ -45,3 +45,17 @@ def test_operation_not_found():
     assert response.json() == {
         "detail": "Operation 999 not found"
     }
+
+def test_operation_returns_correct_data():
+    response = client.get("/operation/1")
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert data["ship"] == "Norwegian Epic"
+    assert data["port"] == "Livorno"
+    assert data["counts"] == 18
+    assert data["minimum"] == 25
+    assert data["missing"] == 7
+    assert data["status"] == "Pending"    
